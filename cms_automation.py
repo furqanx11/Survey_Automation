@@ -108,7 +108,7 @@ def courseForm(enrollment, password, gender, campus_option):
         submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="BodyPH_surveyUserControl_btnSubmit"]')))
         submit_button.click()
 
-        time.sleep(15)
+        time.sleep(5)
 
     driver.quit()
 
