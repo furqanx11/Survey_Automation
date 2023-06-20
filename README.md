@@ -37,7 +37,4 @@ Please note that the script assumes a specific structure of the survey form and 
 Contributing
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-License
-This project is licensed under the MIT License.
-
 Feel free to customize the repository description and README according to your preferences and specific project details.
