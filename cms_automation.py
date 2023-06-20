@@ -14,10 +14,12 @@ def prompt_user():
     password = input("Enter your password: ")
     gender = input("Enter you gender (M/F): ")
     campus = input("Enter your Campus (Karachi, Islamabad, IPP): ")
-    return enrollment, password, gender, campus
+    course_num = int(input("Enter number of course Forms you want to automate: "))
+    teacher_num = int(input("Enter number of Teacher Forms you want to automate: "))
+    return enrollment, password, gender, campus, course_num, teacher_num
 
 
-def courseForm(enrollment, password, gender, campus_option):
+def courseForm(enrollment, password, gender, campus_option, course_num):
     options = Options()
     driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
     driver.get("https://cms.bahria.edu.pk/Logins/Student/Login.aspx")
@@ -76,7 +78,7 @@ def courseForm(enrollment, password, gender, campus_option):
             '//*[@id="BodyPH_surveyUserControl_repeaterQuestionGroups_repeaterQuestions_11_rbl_5_1_5"]',
         ]
 
-    for _ in range(7):
+    for _ in range(course_num):
         survey_link = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="BodyPH_gvSurveyConducts"]/tbody/tr[1]/td[8]/a')))
         survey_link.click()
 
@@ -113,7 +115,7 @@ def courseForm(enrollment, password, gender, campus_option):
     driver.quit()
 
 
-def teacherForm(enrollment, password, campus_option):
+def teacherForm(enrollment, password, campus_option, teacher_num):
     options = Options()
     driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
     driver.get("https://cms.bahria.edu.pk/Logins/Student/Login.aspx")
@@ -154,7 +156,7 @@ def teacherForm(enrollment, password, campus_option):
     login_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="BodyPH_btnLogin"]')))
     login_button.click()
 
-    for _ in range(7):
+    for _ in range(teacher_num):
         survey_link = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="BodyPH_gvSurveyConducts"]/tbody/tr[1]/td[8]/a')))
         survey_link.click()
 
@@ -177,6 +179,6 @@ def teacherForm(enrollment, password, campus_option):
     driver.quit()
 
 
-enrollment, password, gender, campus_option = prompt_user()
-courseForm(enrollment, password, gender, campus_option)
-teacherForm(enrollment, password, campus_option)
+enrollment, password, gender, campus_option, course_num, teacher_num = prompt_user()
+courseForm(enrollment, password, gender, campus_option, course_num)
+teacherForm(enrollment, password, campus_option, teacher_num)
