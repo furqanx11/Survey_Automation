@@ -13,7 +13,7 @@ def prompt_user():
     enrollment = input("Enter your enrollment number: ")
     password = input("Enter your password: ")
     gender = input("Enter you gender (M/F): ")
-    campus = input("Enter your Campus (Karachi, Islamabad, IPP): ")
+    campus = input("Enter your Campus (Karachi, Islamabad1 for (E-8) , Islamabad2 for (H-11), IPP): ")
     course_num = int(input("Enter number of course Forms you want to automate: "))
     teacher_num = int(input("Enter number of Teacher Forms you want to automate: "))
     return enrollment, password, gender, campus, course_num, teacher_num
@@ -39,11 +39,6 @@ def courseForm(enrollment, password, gender, campus_option, course_num):
         EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "Karachi Campus")]')))
         karachi_campus_option.click()
     
-    elif campus_option == "Islamabad":
-        islamabad_campus_option = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "Islamabad Campus")]')))
-        islamabad_campus_option.click()
-    
     elif campus_option == "IPP":
         ipp_karachi_option = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "IPP (Karachi)")]')))
@@ -54,6 +49,16 @@ def courseForm(enrollment, password, gender, campus_option, course_num):
         EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "Lahore Campus")]')))
         lahore_campus_option.click()
     
+    elif campus_option == "Islamabad1":
+        islamabad1_campus_option = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "Islamabad E-8 Campus")]')))
+        islamabad1_campus_option.click()
+    
+    elif campus_option == "Islamabad2":
+        islamabad2_campus_option = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[contains(text(), "Islamabad H-11 Campus")]')))
+        islamabad2_campus_option.click()
+
     else:
         print("Invalid campus option")
 
@@ -111,7 +116,7 @@ def courseForm(enrollment, password, gender, campus_option, course_num):
         submit_button.click()
 
         time.sleep(5)
-
+    
     driver.quit()
 
 
